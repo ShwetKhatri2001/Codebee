@@ -1,0 +1,55 @@
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const compression = require('compression');
+const cors = require('cors');
+const path = require('path');
+const crons = require('./config/crons');
+const comments = require("./Comments/comments");
+
+require('dotenv').config();
+
+const app = express();
+app.use(compression());
+
+require('./config/passport')(passport);
+
+mongoose
+  .connect(
+    process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  },
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log(err));
+
+app.use(cors());
+app.use('/public', express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: "text/*" }));
+
+
+if (process.env.NODE_ENV === 'PROD') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+}
+
+app.use('/api/users', require('./routes/users'));
+app.use('/api/course', require('./routes/course'));
+app.use('/api/comment', require('./routes/comment'));
+
+const PORT = process.env.PORT;
+
+const server = app.listen(PORT, () => {
+  console.log(`Server is running on ${PORT} ...`);
+});
+
+comments.setupSocket(server);
