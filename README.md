@@ -61,7 +61,7 @@ npm install
 
 After installations, make a `.env` file in root directory and add some env variables there . 
 * Add backend port number as `PORT`, client domain as `DOMAIN_NAME`, api url as `API_URL`, mongodb url as `MONGO_URI`
-  and `NODE_ENV` having value DEV or PROD.
+  and `NODE_ENV` having value development / production.
 * Then we need `SENDGRID_VERIFIED_MAIL` and `SENDGRID_API_KEY` to get email service from sendgrid.
 * Then add some secret strings as `CRYPTO_SECRET` and `JWT_SECRET`.
 * At last in this file add Github auth secret key and id as `CLIENT_SECRET` and `CLIENT_ID`. 
