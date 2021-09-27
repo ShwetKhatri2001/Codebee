@@ -1,28 +1,19 @@
 {
-  "name": "argon-dashboard-react",
+  "name": "codebee-client",
   "version": "1.1.0",
-  "description": "React version of Argon Dashboard by Creative Tim",
+  "description": "An Ed-Tech platform prototype for kids to learn coding through visualizations and real-time discussions",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/creativetimofficial/argon-dashboard-react.git"
-  },
   "keywords": [
     "react",
     "reactjs",
     "argon",
     "argon-react",
+    "sawo-react",
     "dashboard",
     "dashboard-react",
     "argon-dashboard",
     "argon-dashboard-react"
   ],
-  "author": "Creative Tim",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/argon-dashboard-react/issues"
-  },
-  "homepage": "https://demos.creative-tim.com/argon-dashboard-react/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -65,7 +56,7 @@
     "react-router-dom": "5.1.2",
     "react-scripts": "^4.0.1",
     "reactstrap": "8.4.1",
-    "sawo": "^1.0.1",
+    "sawo-react": "^1.0.6",
     "socket.io-client": "^4.1.2"
   },
   "devDependencies": {

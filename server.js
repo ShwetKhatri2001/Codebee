@@ -46,7 +46,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/course', require('./routes/course'));
 app.use('/api/comment', require('./routes/comment'));
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on ${PORT} ...`);

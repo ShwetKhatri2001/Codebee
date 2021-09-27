@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
     Button,
     Card,
@@ -14,9 +14,9 @@ import {
     Row,
     Col
 } from "reactstrap";
-import { login, googleLogin, githubLogin } from "../../network/ApiAxios";
+import { login, googleLogin, githubLogin, sawoLogin } from "../../network/ApiAxios";
 import GoogleLogin from 'react-google-login';
-import Sawo from 'sawo'
+import SawoLogin from 'sawo-react'
 
 const Login = props => {
 
@@ -45,9 +45,9 @@ const Login = props => {
 
     const url = window.location.href;
     let params = url.split('?');
-    if (params && params.length == 2) {
+    if (params && params.length === 2) {
         params = params[1].split('=');
-        if (params && params.length == 2 && params[0] == 'code') verify();
+        if (params && params.length === 2 && params[0] === 'code') verify();
     }
 
     const tryLogin = async () => {
@@ -82,23 +82,27 @@ const Login = props => {
         console.log(error);
     }
 
-    // useEffect(() => {
-
-    // const config = {
-    //     containerID: "sawo-container",
-    //     identifierType: 'email',
-    //     apiKey: process.env.REACT_APP_SAWO_API_KEY,
-        
-    //     onSuccess: (payload) => {
-    //         console.log(payload);
-    //         props.history.push("/");
-    //     },
-    // };
-
-    // const sawo = new Sawo(config);
-    // sawo.showForm();
-    // }, [sawoOpen]);
+    const sawoLoginCallback = async (payload) => {
+        console.log(payload);
+        const response = await sawoLogin(payload);
+        const { data } = response;
+        if (data.success) {
+            setError("");
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            props.history.push("/");
+        } else {
+            setPassword("");
+            setError(data.msg);
+        }
+    }
     
+    const sawoConfig = {
+        onSuccess: sawoLoginCallback ,
+        identifierType: 'email',
+        apiKey: process.env.REACT_APP_SAWO_API_KEY,
+        containerHeight: '300px',
+    }
 
     return (
         <>
@@ -178,7 +182,7 @@ const Login = props => {
                         </button>
                       </div>
                       <div className="modal-body">
-                        <div id="sawo-container">Under Development...</div>
+                        <SawoLogin config={sawoConfig}/>
                       </div>
                       <div className="modal-footer">
                         <Button

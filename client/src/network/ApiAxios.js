@@ -43,6 +43,10 @@ export const githubLogin = async (code) => {
     return await instance.post('users/githublogin', code);
 }
 
+export const sawoLogin = async (payload) => {
+    return await instance.post('users/sawoLogin', payload)
+}
+
 export const logout = async token => (
     await instance.post('users/logout', { token })
 );

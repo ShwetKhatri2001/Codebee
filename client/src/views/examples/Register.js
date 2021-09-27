@@ -15,7 +15,8 @@ import {
     Col
 } from "reactstrap";
 import Toast from 'react-bootstrap/Toast'
-import { register, googleLogin } from "../../network/ApiAxios";
+import { register, googleLogin, sawoLogin } from "../../network/ApiAxios";
+import SawoLogin from 'sawo-react'
 import GoogleLogin from 'react-google-login';
 
 const Register = (props) => {
@@ -27,7 +28,6 @@ const Register = (props) => {
     const [error, setError] = useState("");
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("Email sent! Click on the link to verify yourself, then login (Check in spam folder as well).");
-    const [userID, setUserID] = useState(null);
     const [sawoOpen, setSawoOpen] = useState(false);
 
     const toggleSawoModal = () => {
@@ -75,6 +75,27 @@ const Register = (props) => {
 
     const GoogleFailure = (error) => {
         console.log(error);
+    }
+
+    const sawoRegisterCallback = async (payload) => {
+        console.log(payload);
+        const response = await sawoLogin(payload);
+        const { data } = response;
+        if (!data.success) {
+            setError(data.msg);
+            return;
+        }
+        setError("");
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        props.history.push("/");
+    }
+    
+    const sawoConfig = {
+        onSuccess: sawoRegisterCallback ,
+        identifierType: 'email',
+        apiKey: process.env.REACT_APP_SAWO_API_KEY,
+        containerHeight: '300px',
     }
 
     return (
@@ -183,7 +204,7 @@ const Register = (props) => {
                         </button>
                       </div>
                       <div className="modal-body">
-                        <div id="sawo-container">Under Development...</div>
+                        <SawoLogin config={sawoConfig}/>
                       </div>
                       <div className="modal-footer">
                         <Button

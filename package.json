@@ -1,5 +1,5 @@
 {
-  "name": "codebee",
+  "name": "codebee-server",
   "version": "0.1.0",
   "description": "An Ed-Tech platform prototype for kids to learn coding through visualizations and real-time discussions",
   "main": "server.js",
@@ -8,10 +8,8 @@
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm install terser@3.14.1 --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Ceferino Jose II",
-  "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^7.4.7",
     "bcrypt-nodejs": "0.0.3",

@@ -152,6 +152,45 @@ exports.githubLogin = async (req, res) => {
         });
 }
 
+exports.sawoLogin = async (req, res) => {
+    const data = req.body;
+    const email = data.identifier;
+
+    try {
+        let user = await User.findOne({ email: email }).catch(e => console.log(e));
+
+        if (!user) {
+            user = await sawoRegister(email);
+        }
+        const token = jwt.sign(user, process.env.JWT_SECRET, {
+            expiresIn: 86400, 
+        });
+
+        const query = { userId: user._id, token: 'JWT ' + token };
+        ActiveSession.create(query, (err, cd) => {
+            user.password = null;
+            user.__v = null;
+            return res.json({
+                success: true,
+                token: 'JWT ' + token,
+                user
+            });
+        });
+    } catch (err) {
+        throw err
+    }
+}
+
+async function sawoRegister(email) {
+    const name = email.split("@")[0].toUpperCase();
+    const query = { 
+        name: name, 
+        email: email,
+        verified: true
+    }
+    return await User.create(query).catch(e => console.log(e));
+}
+
 async function googleRegister(profile) {
     const { name, email, imageUrl } = profile;
     const query = {
@@ -193,7 +232,7 @@ exports.register = async (req, res, next) => {
                         await sendEmail({
                             email: email,
                             subject: "Confirm your account",
-                            html: '<h1>Hey,</h1><br><p>Confirm your new account </p><p><a href="' + `http://localhost:${process.env.PORT}/api/users/confirm/` + user._id + '">"' + 'verify!' + '"</a></p>'
+                            html: '<h1>Hey,</h1><br><p>Confirm your new account </p><p><a href="' + `${process.env.API_URL}/users/confirm/` + user._id + '">"' + 'verify!' + '"</a></p>'
                         })
 
                         res.json({ success: true, msg: 'The user was succesfully registered' });
