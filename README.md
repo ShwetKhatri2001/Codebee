@@ -3,11 +3,11 @@
     
 # CodeBee
 
-Learn data structures and algorithms through creative visualizations and real-time doubt clearance.
+* Learn data structures and algorithms through creative visualizations and real-time doubt clearance.
 
-The New Education policy 2021 has opened up the field of Computer Science to young coders. I realized that beginning with coding is tough for even a college-level beginner. Although there are lot of free materials, but everything that is organized is paid.
+* The New Education policy 2021 has opened up the field of Computer Science to young coders. I realized that beginning with coding is tough for even a college-level beginner. Although there are lot of free materials, but everything that is organized is paid.
 
-Also, the content is not designed for secondary school students. Therefore I came up with this innovation to provide students with free-of-cost study materials. Kids can learn logic, structure, sequence, and creative expression just as having fun around.  
+* Also, the content is not designed for secondary school students. Therefore I came up with this innovation to provide students with free-of-cost study materials. Kids can learn logic, structure, sequence, and creative expression just as having fun around.  
 
 * Developer Days --> Web Development Track --> Final Challenge Submission
 ![Developer Days](https://d1fdloi71mui9q.cloudfront.net/niT5FCERQxmUlORNHyGS_dMW63U6raEsPK7BF)![Web Development](https://www.aaravinfotech.com/assets/images/pages/web-design-services-15d6b6127f1242.svg)
@@ -71,7 +71,7 @@ Now make a `.env` file in client directory and add similar values given in backe
 To run you app, use this command.
 
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 ## Contributing
