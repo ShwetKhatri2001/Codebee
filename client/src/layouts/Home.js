@@ -15,7 +15,7 @@ class Home extends React.Component {
     }
     getRoutes = routes => {
         return routes.map((prop, key) => {
-            if (prop.layout === "/auth" || prop.layout == "") {
+            if (prop.layout === "/auth" || prop.layout === "") {
                 return (
                     <Route
                         path={prop.layout + prop.path}

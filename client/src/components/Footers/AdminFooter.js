@@ -14,6 +14,7 @@ class Footer extends React.Component {
                 href="https://github.com/ShwetKhatri2001/codebee"
                 rel="noopener noreferrer"
                 target="_blank"
+                rel="noreferrer"
               >
                 Code Bee
               </a>

@@ -6,7 +6,6 @@ import { getCourse } from '../network/ApiAxios'
 import Sidebar from "components/Sidebar/Sidebar.js";
 import routes from "routes.js";
 
-
 class Course extends React.Component {
   componentDidUpdate(e) {
     document.documentElement.scrollTop = 0;
@@ -29,7 +28,6 @@ class Course extends React.Component {
         [<Route
           render={() => (<Index course={this.state.course} />)}
           path="/course/index"
-          key
         />,
         <Route
           render={() => (<CourseItem course={this.state.course} />)}
@@ -41,6 +39,7 @@ class Course extends React.Component {
       console.log(e);
     }
   };
+
   getBrandText = path => {
     for (let i = 0; i < routes.length; i++) {
       if (

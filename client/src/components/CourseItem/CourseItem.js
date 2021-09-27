@@ -159,10 +159,10 @@ function CourseItem(props) {
         <button className="btn btn-success" onClick={notes}>Notes</button>
         <button className="btn btn-danger btn-discussion" onClick={discussion}>Discussion</button>
         <button className="btn btn-warning" onClick={visualize}>
-          {`${play == 0 ? 'Visualize' : 'Video'}`}
+          {`${play === 0 ? 'Visualize' : 'Video'}`}
         </button>
         <button className="btn" onClick={editor}>
-          {`${play == 2 ? 'Back' : 'Editor'}`}
+          {`${play === 2 ? 'Back' : 'Editor'}`}
         </button>
       </div>
       <div className="display">
@@ -170,8 +170,9 @@ function CourseItem(props) {
           <div class="list-group">
             {props.course ? props.course.courseItems.map((item, index) => (
               <a
-                class={`list-group-item list-group-item-action ${id === index ? 'active' : ''}`}
-                onClick={() => { changeId(index) }}>
+                className={`list-group-item list-group-item-action ${id === index ? 'active' : ''}`}
+                onClick={() => { changeId(index) }}
+                >
                 {item.name}
               </a>
             )) : null}
@@ -190,6 +191,7 @@ function CourseItem(props) {
             frameborder="0" marginwidth="0"
             marginheight="0" allowfullscreen
             style={{ minHeight: "90vh" }}
+            title={courseItem._id}
           />
         </div>
       </div>

@@ -21,7 +21,6 @@ const ResetPassword = props => {
     const [error, setError] = useState("");
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState("Email sent! Check it to reset your password.");
-    const [userID, setUserID] = useState(null);
 
     const sendEmail = async () => {
         const response = await forgotPassword(email);

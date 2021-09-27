@@ -127,19 +127,19 @@ function Discussion(props) {
 
     async function like(e) {
         let v = e.target;
-        while (v.parentNode.nodeName != 'LI') v = v.parentNode;
+        while (v.parentNode.nodeName !== 'LI') v = v.parentNode;
         socketClientRef.current.emit("like", { comment_id: v.id, courseItem_id: props._id, user: user });
     }
 
     async function dislike(e) {
         let v = e.target;
-        while (v.parentNode.nodeName != 'LI') v = v.parentNode;
+        while (v.parentNode.nodeName !== 'LI') v = v.parentNode;
         socketClientRef.current.emit("dislike", { comment_id: v.id, courseItem_id: props._id, user: user });
     }
 
     async function deleteIt(e) {
         let v = e.target;
-        while (v.parentNode.nodeName != 'LI') v = v.parentNode;
+        while (v.parentNode.nodeName !== 'LI') v = v.parentNode;
         socketClientRef.current.emit("deleteMessage", { comment_id: v.id, courseItem_id: props._id });
     }
 
