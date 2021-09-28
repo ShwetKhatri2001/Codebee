@@ -52,7 +52,7 @@ export const logout = async token => (
 );
 
 export const edit = async (userID, name, email) => (
-    await instance.post('/users/edit', { userID, name, email })
+    await instance.post('users/edit', { userID, name, email })
 );
 
 export const getCourse = async id => (

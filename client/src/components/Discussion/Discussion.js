@@ -35,7 +35,7 @@ function CommentBox(props) {
     const socketClientRef = useRef()
 
     useEffect(() => {
-        const io = socketio(process.env.API_URL, {
+        const io = socketio(process.env.REACT_APP_API_URL, {
             query: {
                 token: localStorage.getItem("token"),
             }, withCredentials: true
@@ -112,7 +112,7 @@ function Discussion(props) {
 
     useEffect(() => {
         getComments()
-        const io = socketio(process.env.API_URL, {
+        const io = socketio(process.env.REACT_APP_API_URL, {
             query: {
                 token: localStorage.getItem("token"),
             }, withCredentials: true
