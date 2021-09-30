@@ -29,7 +29,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/client/public')));
+app.use('/public', express.static('client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: "text/*" }));
